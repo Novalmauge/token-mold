@@ -405,7 +405,7 @@ export default class TokenMold {
     }
   }
 
-  _rollHP(newData, data, actor) {
+ aysnc _rollHP(newData, data, actor) {
     const hpProperties = {
       dnd5e: "system.attributes.hp.formula",
       dcc: "system.attributes.hitDice.value",
@@ -413,8 +413,8 @@ export default class TokenMold {
 
     const formula = getProperty(actor, hpProperties[TokenMold.GAME_SYSTEM]);
     if (formula) {
-      const r = new Roll(formula.replace(" ", ""));
-      r.roll({ async: false });
+      const r = new Roll(formula.replace(" ", " "));
+      await r.evaluate();
       if (this.data.hp.toChat) {
         r.toMessage({
           rollMode: "gmroll",
