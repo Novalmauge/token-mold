@@ -414,7 +414,7 @@ export default class TokenMold {
     const formula = getProperty(actor, hpProperties[TokenMold.GAME_SYSTEM]);
     if (formula) {
       const r = new Roll(formula.replace(" ", ""));
-      r.roll({ async: false });
+      r.evaluate({ async: false });
       if (this.data.hp.toChat) {
         r.toMessage({
           rollMode: "gmroll",
